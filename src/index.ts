@@ -18,10 +18,32 @@ AppDataSource.initialize().then(async () => {
     book.pages = 200;
     book.title = "Isle of Pasta"
 
+    console.log("Inserting a new book");
+    const book2 = new Book();
+    book2.edition = 1;
+    book2.pages = 205;
+    book2.title = "Land of Linguini"
+
+    console.log("Inserting a new book");
+    const book3 = new Book();
+    book3.edition = 2;
+    book3.pages = 209;
+    book3.title = "Land of Linguini"
+
     console.log("Inserting a new cover");
     const cover = new Cover();
     cover.color = "Blue"
     cover.description = "Blue with Turqoise gem inset"
+
+    console.log("Inserting a new cover");
+    const cover2 = new Cover();
+    cover2.color = "Red"
+    cover2.description = "Red with Gold gem inset"
+
+    console.log("Inserting a new cover");
+    const cover3 = new Cover();
+    cover3.color = "Burgundy"
+    cover3.description = "Burgundy with Dusky gem inset"
 
     console.log("Inserting a new introduction");
     const introduction = new Introduction();
@@ -30,14 +52,21 @@ AppDataSource.initialize().then(async () => {
     introduction.title = "Lasagna of Lucidity"
     introduction.book = book
 
+    console.log("Inserting a new introduction");
+    const introduction2 = new Introduction();
+    introduction2.length = 15;
+    introduction2.text = 'The pasta fell and ebbed in eddies of glorious languidity. Until it no longer did.'
+    introduction2.title = "Lasagna of Lassitude"
+    introduction2.book = book2
+
     await AppDataSource.manager.save(author)
     console.log("Saved a new Author with id: " + author.id)
 
     await AppDataSource.manager.save(book)
-    console.log("Saved a new Book with id: " + author.id)
+    console.log("Saved a new Book with id: " + book.id)
 
     await AppDataSource.manager.save(introduction)
-    console.log("Saved a new Introduction with id: " + author.id+ ". Has a one to one relation with Book.")
+    console.log("Saved a new Introduction with id: " + introduction.id+ ". Has a one to one relation with Book.")
 
     console.log("Loading users from the database...")
     const authors = await AppDataSource.manager.find(Author)

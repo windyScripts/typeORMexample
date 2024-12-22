@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, Relation } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, Relation, OneToMany } from "typeorm"
 import { Introduction } from "./Introduction"
+import { Cover } from "./Cover"
 
 @Entity()
 export class Book {
@@ -18,5 +19,8 @@ export class Book {
 
     @OneToOne(()=>Introduction,(introduction)=>introduction.book)
     introduction: Relation<Introduction>
+
+    @OneToMany(()=>Cover,(cover)=>cover.book)
+    cover: Cover[]
 
 }
